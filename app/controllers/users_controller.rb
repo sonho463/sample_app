@@ -14,8 +14,9 @@ class UsersController < ApplicationController
     # debugger
     if @user.save
       #保存成功時の処理
-      redirect_to @user
+      log_in @user
       flash[:success] = "Welcome to the sample app!"
+      redirect_to @user
     else
       render 'new'
     end
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   
     def user_params
       params.require(:user).permit(:name, :email,
-                                   :password, :password_confirmation)
+                                  :password, :password_confirmation)
     end
   
 
