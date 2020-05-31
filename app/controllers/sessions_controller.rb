@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       #ログイン後にユーザー情報ページへリダイレクト
       log_in @user
        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to @user
+      redirect_back_or @user
       # debugger
     else
       #エラーメッセージを作成（flash)
@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   
   def destroy
     log_out if logged_in?
+    # debugger
     redirect_to root_url
   end
 end
