@@ -27,3 +27,11 @@ User.create!(
                activated: true,
                activated_at: Time.zone.now)
 end
+
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  # content = Faker::Movie.title
+  # content = Faker::Quote.famous_last_words
+  users.each { |user| user.microposts.create!(content: content) }
+end
